@@ -1,0 +1,228 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<!-- Promo Banner -->
+<div class="container my-4">
+  <div class="alert alert-info text-center shadow-sm fs-5 mb-0" style="background:#ccf6fc;">
+    🎉 <span class="fw-bold">Summer Sale!</span> Get up to <strong>30% off</strong> select items. <a href="{% url 'product_list' %}" class="alert-link fw-bold">Shop Now</a>
+  </div>
+</div>
+
+<!-- Hero Banner -->
+<div class="p-5 mb-4 rounded-3 shadow-sm hero-gradient">
+  <div class="container py-5 text-center">
+    <h1 class="display-3 fw-bold mb-3 animate__animated animate__fadeInDown">Welcome to Rameen Ecommerce <span class="animate__animated animate__bounceIn"><img src="https://img.icons8.com/color/48/000000/shopping-bag--v2.png" style="height: 48px; vertical-align: middle;"/></span></h1>
+    <p class="lead mb-4 animate__animated animate__fadeInUp">Explore high-quality gadgets, accessories, and more—all in one place.</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary btn-lg mt-3 px-5 animate__animated animate__pulse animate__infinite">Browse Products</a>
+  </div>
+</div>
+
+<!-- About Section -->
+<div class="container my-5">
+  <div class="row align-items-center">
+    <div class="col-md-6 mb-4 mb-md-0">
+      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f" class="img-fluid rounded shadow-lg" alt="Shopping Image">
+    </div>
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-3">Why Shop With Us?</h2>
+      <p class="fs-5">At <strong>Rameen Ecommerce</strong>, we believe shopping should be simple, secure, and satisfying. Whether you're looking for wireless headphones, smartwatches, or Bluetooth speakers—we have something just for you!</p>
+      <ul class="list-unstyled fs-5">
+        <li>✅ Handpicked, high-quality products</li>
+        <li>✅ Smooth and secure checkout process</li>
+        <li>✅ Fast delivery and great customer service</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Top Categories -->
+<div class="container my-5">
+  <h3 class="text-center mb-4 fw-bold">Shop by Category</h3>
+  <div class="row justify-content-center g-4">
+    {% for cat in categories|slice:':6' %}
+    <div class="col-6 col-sm-4 col-md-2">
+      <a href="{% url 'product_list' %}?category={{ cat.name }}" class="text-decoration-none">
+        <div class="card text-center border-0 shadow-sm category-card py-4">
+          <div class="mb-2"><span class="fs-1">🛒</span></div>
+          <div class="fw-bold text-dark">{{ cat.name }}</div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Featured Products Section -->
+<div class="bg-white py-5 border-top border-bottom">
+  <div class="container">
+    <h3 class="text-center mb-4 fw-bold">Featured Products</h3>
+    <div class="row justify-content-center">
+      {% for product in products|slice:':4' %}
+      <div class="col-12 col-sm-6 col-md-3 mb-4">
+        <div class="card h-100 shadow-sm border-0 product-card">
+          <img src="{{ product.image.url }}" class="card-img-top product-img" alt="{{ product.name }}">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <span class="badge bg-success mb-2">${{ product.price }}</span>
+            <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary btn-sm mt-auto">View Details</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12 text-center">
+        <p class="text-muted">No featured products available.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- How It Works -->
+<div class="container my-5">
+  <h3 class="text-center mb-4 fw-bold">How It Works</h3>
+  <div class="row text-center g-4">
+    <div class="col-md-4">
+      <div class="display-4 mb-2">🔎</div>
+      <h5>Browse Products</h5>
+      <p>Explore our wide range of quality products and find your favorites.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="display-4 mb-2">🛒</div>
+      <h5>Add to Cart</h5>
+      <p>Quickly add items to your cart and review your selections anytime.</p>
+    </div>
+    <div class="col-md-4">
+      <div class="display-4 mb-2">🚚</div>
+      <h5>Fast Delivery</h5>
+      <p>Enjoy fast, reliable delivery right to your doorstep.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Customer Testimonials -->
+<div class="bg-light py-5 border-top border-bottom">
+  <div class="container">
+    <h3 class="text-center mb-4 fw-bold">What Our Customers Say</h3>
+    <div class="row justify-content-center g-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 p-4 h-100">
+          <div class="mb-2"><span class="fs-2">⭐️⭐️⭐️⭐️⭐️</span></div>
+          <blockquote class="blockquote mb-0">“Amazing service and great products! Will shop again.”</blockquote>
+          <footer class="blockquote-footer mt-2">Ayesha K.</footer>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 p-4 h-100">
+          <div class="mb-2"><span class="fs-2">⭐️⭐️⭐️⭐️⭐️</span></div>
+          <blockquote class="blockquote mb-0">“Super fast delivery and the quality is top-notch.”</blockquote>
+          <footer class="blockquote-footer mt-2">Ali R.</footer>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 p-4 h-100">
+          <div class="mb-2"><span class="fs-2">⭐️⭐️⭐️⭐️⭐️</span></div>
+          <blockquote class="blockquote mb-0">“The best online shopping experience I've had!”</blockquote>
+          <footer class="blockquote-footer mt-2">Sara M.</footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Brands/Partners -->
+<div class="container my-5">
+  <h3 class="text-center mb-4 fw-bold">Our Trusted Brands</h3>
+  <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
+    <img src="https://img.icons8.com/color/48/000000/samsung.png" alt="Samsung" height="40">
+    <img src="https://img.icons8.com/color/48/000000/nike.png" alt="Nike" height="40">
+    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google" height="40">
+    <img src="https://img.icons8.com/color/48/000000/mac-os.png" alt="Apple" height="40">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.png" alt="Adidas" height="40">
+  </div>
+</div>
+
+<!-- Newsletter Signup -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm border-0 p-4">
+        <h4 class="mb-3 text-center">Subscribe to Our Newsletter</h4>
+        <form>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter your email" required>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </div>
+        </form>
+        <small class="text-muted d-block mt-2 text-center">Get updates on new arrivals and exclusive deals.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<div class="container my-5">
+  <h3 class="text-center mb-4 fw-bold">Frequently Asked Questions</h3>
+  <div class="accordion" id="faqAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faq1">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+          How fast is delivery?
+        </button>
+      </h2>
+      <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">Most orders are delivered within 2-4 business days.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faq2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+          Can I return a product?
+        </button>
+      </h2>
+      <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">Yes, we offer a 7-day return policy on most items.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faq3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+          How can I contact support?
+        </button>
+      </h2>
+      <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">You can email us at <a href="mailto:support@rameenecommerce.com">support@rameenecommerce.com</a>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-dark text-white py-5">
+  <div class="container text-center">
+    <h3 class="mb-3">Ready to Start Shopping?</h3>
+    <a href="{% url 'product_list' %}" class="btn btn-outline-light btn-lg px-4">Explore Our Products</a>
+  </div>
+</div>
+
+<!-- Animate.css CDN for animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- Custom CSS for hero gradient and product cards -->
+<style>
+.hero-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}
+.product-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.product-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+.product-img {
+  object-fit: cover;
+  height: 180px;
+}
+</style>
+
+{% endblock %}
